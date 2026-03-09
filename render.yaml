@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: news-mcp-server
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python api.py
+    envVars:
+      - key: NEWSAPI_KEY
+        sync: false
+      - key: GNEWS_KEY
+        sync: false
+      - key: CURRENTS_KEY
+        sync: false
+      - key: NEWSDATA_KEY
+        sync: false
