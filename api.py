@@ -397,55 +397,67 @@ def set_country():
         return jsonify({'success': False, 'error': str(e)})
 
 
-def get_sample_news():
+def get_sample_news(country='us'):
     """Return sample news for testing when APIs fail"""
-    return [
-        {
-            'headline': 'Breaking: Major Technology Innovation Announced',
-            'summary': 'A groundbreaking technology development has been announced that could change the way we interact with devices.',
-            'source': 'TechNews',
-            'source_url': 'https://www.bbc.com/news/technology',
-            'published_at': '2026-03-10T10:00:00Z',
-            'image_url': 'https://via.placeholder.com/800x400/4ECDC4/FFFFFF?text=Tech+News',
-            'category': 'technology'
-        },
-        {
-            'headline': 'World Markets See Significant Growth',
-            'summary': 'Global markets have shown remarkable growth today as investors remain optimistic about the economic outlook.',
-            'source': 'FinanceDaily',
-            'source_url': 'https://www.bbc.com/news/business',
-            'published_at': '2026-03-10T09:30:00Z',
-            'image_url': 'https://via.placeholder.com/800x400/FF6B6B/FFFFFF?text=Finance',
-            'category': 'business'
-        },
-        {
-            'headline': 'Scientists Discover New Species in Deep Ocean',
-            'summary': 'Marine biologists have discovered an entirely new species living in the depths of the Pacific Ocean.',
-            'source': 'ScienceToday',
-            'source_url': 'https://www.bbc.com/news/science_and_environment',
-            'published_at': '2026-03-10T08:00:00Z',
-            'image_url': 'https://via.placeholder.com/800x400/4ECDC4/FFFFFF?text=Science',
-            'category': 'science'
-        },
-        {
-            'headline': 'Sports: Championship Finals Set for This Weekend',
-            'summary': 'The highly anticipated championship finals are set to take place this weekend with teams from around the world competing.',
-            'source': 'SportsWire',
-            'source_url': 'https://www.bbc.com/sport',
-            'published_at': '2026-03-10T07:00:00Z',
-            'image_url': 'https://via.placeholder.com/800x400/FFE66D/000000?text=Sports',
-            'category': 'sports'
-        },
-        {
-            'headline': 'Health Experts Recommend New Wellness Practices',
-            'summary': 'Leading health experts are recommending new wellness practices to improve overall health and well-being.',
-            'source': 'HealthNews',
-            'source_url': 'https://www.bbc.com/news/health',
-            'published_at': '2026-03-10T06:00:00Z',
-            'image_url': 'https://via.placeholder.com/800x400/FF8A5C/FFFFFF?text=Health',
-            'category': 'health'
-        }
-    ]
+    import random
+    
+    country_news = {
+        'us': [
+            {'headline': 'Breaking: Major Tech Innovation Announced', 'category': 'technology', 'source': 'TechNews', 'image': 'https://picsum.photos/800/400?random=1'},
+            {'headline': 'World Markets See Significant Growth', 'category': 'business', 'source': 'FinanceDaily', 'image': 'https://picsum.photos/800/400?random=2'},
+            {'headline': 'Scientists Discover New Species in Deep Ocean', 'category': 'science', 'source': 'ScienceToday', 'image': 'https://picsum.photos/800/400?random=3'},
+            {'headline': 'Sports: Championship Finals Set for This Weekend', 'category': 'sports', 'source': 'SportsWire', 'image': 'https://picsum.photos/800/400?random=4'},
+            {'headline': 'Health Experts Recommend New Wellness Practices', 'category': 'health', 'source': 'HealthNews', 'image': 'https://picsum.photos/800/400?random=5'},
+            {'headline': 'Climate Summit Reaches Historic Agreement', 'category': 'environment', 'source': 'WorldNews', 'image': 'https://picsum.photos/800/400?random=6'},
+            {'headline': 'New Movie Breaks Box Office Records', 'category': 'entertainment', 'source': 'EntertainmentDaily', 'image': 'https://picsum.photos/800/400?random=7'},
+            {'headline': 'Political Leaders Meet for Summit', 'category': 'politics', 'source': 'PoliticsNow', 'image': 'https://picsum.photos/800/400?random=8'},
+        ],
+        'ng': [
+            {'headline': 'Nigerian Economy Shows Strong Growth', 'category': 'business', 'source': 'Punch NG', 'image': 'https://picsum.photos/800/400?random=10'},
+            {'headline': 'Lagos Tech Hub Attracts Global Investment', 'category': 'technology', 'source': 'TechCabal', 'image': 'https://picsum.photos/800/400?random=11'},
+            {'headline': 'Super Eagles Prepare for World Cup Qualifiers', 'category': 'sports', 'source': 'Sports247', 'image': 'https://picsum.photos/800/400?random=12'},
+            {'headline': 'Nigerian Scientists Make Medical Breakthrough', 'category': 'science', 'source': 'ScienceNG', 'image': 'https://picsum.photos/800/400?random=13'},
+            {'headline': 'Nollywood Stars Win International Awards', 'category': 'entertainment', 'source': 'NollywoodLife', 'image': 'https://picsum.photos/800/400?random=14'},
+            {'headline': 'Health Minister Announces New Policy', 'category': 'health', 'source': 'DailyPost NG', 'image': 'https://picsum.photos/800/400?random=15'},
+            {'headline': 'Nigerian Artists Featured at Global Event', 'category': 'culture', 'source': 'CultureNG', 'image': 'https://picsum.photos/800/400?random=16'},
+            {'headline': 'Nigerian Universities Rank Among Best in Africa', 'category': 'education', 'source': 'EducationNG', 'image': 'https://picsum.photos/800/400?random=17'},
+        ],
+        'gb': [
+            {'headline': 'UK Announces New Economic Policy', 'category': 'business', 'source': 'BBC UK', 'image': 'https://picsum.photos/800/400?random=20'},
+            {'headline': 'British Scientists Win Nobel Prize', 'category': 'science', 'source': 'Guardian UK', 'image': 'https://picsum.photos/800/400?random=21'},
+            {'headline': 'Premier League: Exciting Match Results', 'category': 'sports', 'source': 'Sky Sports UK', 'image': 'https://picsum.photos/800/400?random=22'},
+            {'headline': 'Royal Family Announces Special Event', 'category': 'entertainment', 'source': 'BBC UK', 'image': 'https://picsum.photos/800/400?random=23'},
+            {'headline': 'NHS Introduces New Health Program', 'category': 'health', 'source': 'NHS News', 'image': 'https://picsum.photos/800/400?random=24'},
+            {'headline': 'UK Tech Industry Sees Major Growth', 'category': 'technology', 'source': 'TechUK', 'image': 'https://picsum.photos/800/400?random=25'},
+        ],
+        'in': [
+            {'headline': 'India Economic Growth Exceeds Expectations', 'category': 'business', 'source': 'Times India', 'image': 'https://picsum.photos/800/400?random=30'},
+            {'headline': 'Indian Space Mission Achieves Historic Success', 'category': 'science', 'source': 'NDTV', 'image': 'https://picsum.photos/800/400?random=31'},
+            {'headline': 'Cricket World Cup: India Wins Thrilling Match', 'category': 'sports', 'source': 'CricketNext', 'image': 'https://picsum.photos/800/400?random=32'},
+            {'headline': 'Bollywood Blockbuster Breaks Records', 'category': 'entertainment', 'source': 'BollywoodLife', 'image': 'https://picsum.photos/800/400?random=33'},
+            {'headline': 'Indian Tech Startups Attract Investment', 'category': 'technology', 'source': 'TechCrunch India', 'image': 'https://picsum.photos/800/400?random=34'},
+        ],
+    }
+    
+    # Get country-specific news or use US as default
+    news_list = country_news.get(country, country_news['us'])
+    
+    # Build full articles
+    articles = []
+    for i, item in enumerate(news_list):
+        articles.append({
+            'headline': item['headline'],
+            'summary': f"Latest {item['category']} news from {country.upper()}. This is a sample article for demonstration purposes while the server connects to live news APIs.",
+            'source': item['source'],
+            'source_url': f'https://news.example.com/{country}/{i}',
+            'published_at': '2026-03-08T12:00:00Z',
+            'image_url': item['image'],
+            'category': item['category'],
+            'country': country,
+            'read_time_seconds': random.randint(60, 300)
+        })
+    
+    return articles
 
 
 @app.route('/api/news')
